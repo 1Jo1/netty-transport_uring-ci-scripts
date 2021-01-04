@@ -1,0 +1,62 @@
+#!/usr/bin/expect -f
+#starts guest vm, run benchmarks, poweroff
+set timeout -1
+
+set exceptUniqueConsole {ubu:~# }
+set expectNettyDirectory {netty-incubator-transport-io_uring# }
+
+set nettyVersion {netty-incubator-transport-native-io_uring-0.0.2.Final}
+
+set qemuDirectory "$env(QEMU_DIRECTORY)"
+
+set kernel [lindex $argv 0];
+
+#Start the guest VM
+spawn qemu-system-x86_64 \
+-kernel $kernel \
+-hda "${qemuDirectory}/ubuntu.img.snapshot.qcow2" \
+-append "root=/dev/sda2 single console=ttyS0 systemd.unit=graphical.target" \
+-enable-kvm \
+-m 6G \
+-smp 4 \
+-nographic \
+-vga virtio \
+-net nic -net user,smb="$qemuDirectory/qemu-shared-mvn-reports"
+
+#Login process
+expect "login: "
+send "root\r"
+
+expect "Password: "
+send "root\r"
+
+expect $exceptUniqueConsole
+send "mount -t cifs //10.0.2.4/qemu/ /mnt\r"
+
+expect {Password for root@//10.0.2.4/qemu/:  (press TAB for no echo)}
+send "\r"
+
+expect $exceptUniqueConsole
+send "git clone https://github.com/netty/netty-incubator-transport-io_uring && cd netty-incubator-transport-io_uring\r"
+
+expect $expectNettyDirectory
+send "git checkout $nettyVersion\r"
+
+expect $expectNettyDirectory
+send "./mvnw clean test -Dio.netty.testsuite.badHost=netty.io -Dmaven.wagon.http.pool=false\r"
+
+expect $expectNettyDirectory
+send "cp target/surefire-reports/TEST-*.xml /mnt\r"
+
+expect $expectNettyDirectory
+send "cp target/failsafe-reports/TEST-*.xml /mnt\r"
+
+expect $expectNettyDirectory
+send "umount -a -t cifs -l\r"
+
+expect $expectNettyDirectory
+send "shutdown -h now\r"
+
+sleep 5
+#send "shutdown -h now\r"
+log_file;

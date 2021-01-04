@@ -1,19 +1,33 @@
+variables:
+  QEMU_DIRECTORY: "/qemu-ubu"
+
 stages:
     - build
     - test
+
+gcc-build:
+  stage: build
+  script:
+    - lsb_release -a
+    - curl -s https://gitlab.com/1Jo1/netty-automated-kernel-build-tests/-/raw/master/build-kernel.sh | bash -s $CI_COMMIT_TAG
+  artifacts:
+    paths:
+      - kernel-build
   
-  gcc-build:
-    stage: build
-    script:
-      - curl -s https://gitlab.com/1Jo1/netty-automated-kernel-build-tests/-/raw/master/build-kernel.sh | bash -s $CI_COMMIT_TAG
-    artifacts:
-      paths:
-        - kernel-build
-  
-  test_a:
-    stage: test
-    script:
-      - echo "This job tests something. It will only run when all jobs in the"
-      - ls -la
-    dependencies:
-      - gcc-build
+test_a:
+  stage: test
+  script:
+    - rm -f $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2 || true
+    - rm -f $QEMU_DIRECTORY/qemu-shared-mvn-reports/* || true
+    - echo $QEMU_DIRECTORY
+    - curl https://gitlab.com/1Jo1/netty-automated-kernel-build-tests/-/raw/master/qemu-netty-tests.exp
+    - qemu-img create -f qcow2 -b $QEMU_DIRECTORY/ubuntu.img.qcow2 $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2
+    - ./qemu-netty-tests.exp kernel-build/$CI_COMMIT_TAG-kernel-qemu-release
+  dependencies:
+    - gcc-build
+  artifacts:
+    reports:
+      junit:
+        - $QEMU_DIRECTORY/qemu-shared-mvn-reports/TEST-*.xml
+    paths:
+      - $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2

@@ -2,8 +2,8 @@
 
 #sudo apt-get install gcc-arm-linux-gnueabi
 
-wget https://gist.githubusercontent.com/1Jo1/3b03e8a159f5b61b886fdcd3f90fed9e/raw/7b5a5022df4b8467c1a7366194731adede448dc7/linux_5_9-localyesconfig
-mv linux_5_9-localyesconfig .config
+wget https://gist.githubusercontent.com/1Jo1/049b60e3ca767e9ad71c676f81f47add/raw/a71dce14d2e16e1944fefd66fa108193a53c466c/linux_5_9-ubu.config
+mv linux_5_9-ubu.config .config
 
 make ARCH=x86_64 olddefconfig
 make -j$(nproc)

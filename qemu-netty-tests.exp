@@ -21,7 +21,7 @@ spawn qemu-system-x86_64 \
 -smp 4 \
 -nographic \
 -vga virtio \
--net nic -net user,smb="$qemuDirectory/qemu-shared-mvn-reports"
+-net nic -net user,smb=${qemuDirectory}/qemu-shared-mvn-reports
 
 #Login process
 expect "login: "

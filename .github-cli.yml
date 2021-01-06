@@ -23,11 +23,13 @@ test_a:
     - wget https://gitlab.com/1Jo1/netty-automated-kernel-build-tests/-/raw/master/qemu-netty-tests.exp && chmod +x qemu-netty-tests.exp
     - qemu-img create -f qcow2 -b $QEMU_DIRECTORY/ubuntu.img.qcow2 $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2
     - ./qemu-netty-tests.exp kernel-build/$CI_COMMIT_TAG-kernel-qemu-release
+    - cp $QEMU_DIRECTORY/qemu-shared-mvn-reports/TEST-*.xml .
+    - cp $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2 .
   dependencies:
     - gcc-build
   artifacts:
     reports:
       junit:
-        - $QEMU_DIRECTORY/qemu-shared-mvn-reports/TEST-*.xml
+        - qemu-shared-mvn-reports/TEST-*.xml
     paths:
-      - $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2
+      - ubuntu.img.snapshot.qcow2

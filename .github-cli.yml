@@ -20,7 +20,7 @@ test_a:
     - rm -f $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2 || true
     - rm -f $QEMU_DIRECTORY/qemu-shared-mvn-reports/* || true
     - echo $QEMU_DIRECTORY
-    - curl https://gitlab.com/1Jo1/netty-automated-kernel-build-tests/-/raw/master/qemu-netty-tests.exp
+    - wget https://gitlab.com/1Jo1/netty-automated-kernel-build-tests/-/raw/master/qemu-netty-tests.exp
     - qemu-img create -f qcow2 -b $QEMU_DIRECTORY/ubuntu.img.qcow2 $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2
     - ./qemu-netty-tests.exp kernel-build/$CI_COMMIT_TAG-kernel-qemu-release
   dependencies:

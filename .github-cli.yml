@@ -1,22 +1,20 @@
 variables:
   QEMU_DIRECTORY: "/qemu-ubu"
-  t: $CI_COMMIT_TAG | cut -d'v' -f 2 | cut -d'5' -f 2 | cut -d'.' -f 2)
+  t: echo $CI_COMMIT_TAG | cut -d'v' -f 2 | cut -d'5' -f 2 | cut -d'.' -f 2
+  res: "$t -lt 9"
 
 workflow:
   rules:
-    - if: $CI_COMMIT_TAG ==  "v5"
-      when: never
-    - when: always
-    - if: "$t" -lt "9"
-      when: 
+    - if: $CI_COMMIT_TAG =~ /v([1-9]\[0-9]+\.?[0-9]*|0?5\.(9|[1-9]+[0-9]+)|[0-9]*[6-9])\.?([0-9]+\.?)?/
 
 stages:
     - build
     - test
 
-gcc-kernel-build-x86:
+gcc-kernel-x86:
   stage: build
   script:
+    - echo $t
     - lsb_release -a
     - curl -s https://gitlab.com/1Jo1/netty-automated-kernel-build-tests/-/raw/master/build-kernel.sh | bash -s $CI_COMMIT_TAG
   artifacts:
@@ -25,6 +23,7 @@ gcc-kernel-build-x86:
   
 qemu-netty-test:
   stage: test
+  needs: ["gcc-kernel-x86"]
   script:
     - rm -f $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2 || true
     - rm -f $QEMU_DIRECTORY/qemu-shared-mvn-reports/* || true
@@ -34,8 +33,6 @@ qemu-netty-test:
     - ./qemu-netty-tests.exp kernel-build/$CI_COMMIT_TAG-kernel-qemu-release
     - cp $QEMU_DIRECTORY/qemu-shared-mvn-reports/TEST-*.xml .
     - cp $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2 .
-  dependencies:
-    - gcc-kernel-build-x86
   artifacts:
     reports:
       junit:

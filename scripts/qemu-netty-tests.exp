@@ -1,5 +1,5 @@
 #!/usr/bin/expect -f
-#starts guest vm, run benchmarks, poweroff
+
 set timeout -1
 
 set exceptUniqueConsole {ubu:~# }
@@ -23,7 +23,6 @@ spawn qemu-system-x86_64 \
 -nographic \
 -net nic -net user,smb=${qemuDirectory}/qemu-shared-mvn-reports
 
-#Login process
 expect "login: "
 send "root\r"
 
@@ -58,5 +57,3 @@ expect $expectNettyDirectory
 send "shutdown -h now\r"
 
 sleep 5
-#send "shutdown -h now\r"
-log_file;

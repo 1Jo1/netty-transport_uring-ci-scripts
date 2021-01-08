@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#sudo apt-get install gcc-arm-linux-gnueabi
-
 wget https://gist.githubusercontent.com/1Jo1/049b60e3ca767e9ad71c676f81f47add/raw/a71dce14d2e16e1944fefd66fa108193a53c466c/linux_5_9-ubu.config
 mv linux_5_9-ubu.config .config
 

@@ -5,7 +5,7 @@ set timeout -1
 set exceptUniqueConsole {ubu:~# }
 set expectNettyDirectory {netty-incubator-transport-io_uring# }
 
-set nettyVersion {netty-incubator-transport-native-io_uring-0.0.2.Final}
+set nettyVersion {netty-incubator-transport-native-io_uring-0.0.5.Final}
 
 set qemuDirectory "$env(QEMU_DIRECTORY)"
 

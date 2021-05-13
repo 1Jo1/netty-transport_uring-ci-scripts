@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wget https://gist.githubusercontent.com/1Jo1/57346c0d695adb5974a7f4e53f9ac2ac/raw/fb1fe4d8286192d429631edceae53f031c667c8a/linux-5_8-generic-config
+wget https://gist.githubusercontent.com/1Jo1/57346c0d695adb5974a7f4e53f9ac2ac/raw/51b85551deaae3064b2de93252296a3f0932fed7/linux-5_8-generic-config
 mv linux-5_8-generic-config .config
 
 version=$(make kernelversion)

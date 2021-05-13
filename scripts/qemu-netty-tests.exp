@@ -11,8 +11,11 @@ set qemuDirectory "$env(QEMU_DIRECTORY)"
 
 set kernel [lindex $argv 0];
 
+set initramfs [lindex $argv 1];
+
 #Start the guest VM
 spawn qemu-system-x86_64 \
+-initrd $initramfs \
 -kernel $kernel \
 -hda "${qemuDirectory}/ubuntu.img.snapshot.qcow2" \
 -append "root=PARTUUID=d9e48cd6-1ebd-4c5a-bfa1-be00c62e4bb5 console=ttyS0" \

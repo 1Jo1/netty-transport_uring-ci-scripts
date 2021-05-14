@@ -18,7 +18,7 @@ spawn qemu-system-x86_64 \
 -initrd $initramfs \
 -kernel $kernel \
 -hda "${qemuDirectory}/ubuntu.img.snapshot.qcow2" \
--append "root=PARTUUID=d9e48cd6-1ebd-4c5a-bfa1-be00c62e4bb5 console=ttyS0" \
+-append "root=PARTUUID=726a2d4e-65f0-42cf-87b8-68eb98fa8f90 console=ttyS0" \
 -enable-kvm \
 -m 6G \
 -cpu host \

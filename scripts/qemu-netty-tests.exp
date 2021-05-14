@@ -27,10 +27,10 @@ spawn qemu-system-x86_64 \
 -net nic -net user,smb=${qemuDirectory}/qemu-shared-mvn-reports
 
 expect "login: "
-send "root\r"
+send "jo\r"
 
 expect "Password: "
-send "root\r"
+send "netty007\r"
 
 expect $exceptUniqueConsole
 send "mount -t cifs //10.0.2.4/qemu/ /mnt\r"

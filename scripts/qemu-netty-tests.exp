@@ -2,7 +2,7 @@
 
 set timeout -1
 
-set exceptUniqueConsole {ubu:~# }
+set exceptUniqueConsole {jo@ubu:~$ }
 set expectNettyDirectory {netty-incubator-transport-io_uring# }
 
 set nettyVersion {netty-incubator-transport-native-io_uring-0.0.5.Final}

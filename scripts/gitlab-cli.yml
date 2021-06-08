@@ -8,32 +8,9 @@ workflow:
     - if: $CI_COMMIT_TAG =~ /v([1-9]\[0-9]+\.?[0-9]*|0?5\.(9|[1-9]+[0-9]+)|[0-9]*[6-9])\.?([0-9]+\.?)?/
 
 stages:
-    - build
     - test
 
-gcc-kernel-x86:
-  stage: build
-  script:
-    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel.sh | bash -s $CI_COMMIT_TAG
-  artifacts:
-    paths:
-      - kernel-build
-  
 qemu-netty-test:
   stage: test
-  needs: ["gcc-kernel-x86"]
   script:
-    - rm -f $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2 || true
-    - rm -f $QEMU_DIRECTORY/qemu-shared-mvn-reports/* || true
-    - echo $QEMU_DIRECTORY
-    - wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/qemu-netty-tests.exp && chmod +x qemu-netty-tests.exp
-    - qemu-img create -f qcow2 -b $QEMU_DIRECTORY/ubuntu.img.qcow2 $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2
-    - ./qemu-netty-tests.exp kernel-build/$CI_COMMIT_TAG-kernel-qemu-release kernel-build/$CI_COMMIT_TAG-initrd.img
-    - cp $QEMU_DIRECTORY/qemu-shared-mvn-reports/TEST-*.xml .
-    - cp $QEMU_DIRECTORY/ubuntu.img.snapshot.qcow2 .
-  artifacts:
-    reports:
-      junit:
-        - TEST-*.xml
-    paths:
-      - ubuntu.img.snapshot.qcow2
+    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel.sh | bash -s $CI_COMMIT_TAG

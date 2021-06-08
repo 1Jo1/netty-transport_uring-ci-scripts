@@ -1,0 +1,34 @@
+#!/usr/bin/expect -f
+# ----------------------------------------------------------------------------
+# Copyright 2021 The Netty Project
+#
+# The Netty Project licenses this file to you under the Apache License,
+# version 2.0 (the "License"); you may not use this file except in compliance
+# with the License. You may obtain a copy of the License at:
+#
+#   https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# Let's use a default timeout of 30 seconds
+set timeout 1000000
+set console {netty@io-uring-00}
+set rootConsole {root@io-uring-00}
+
+set qemudir [lindex $argv 0];
+set disk [lindex $argv 1];
+set seed [lindex $argv 2];
+
+# Start up our VM
+spawn qemu-system-x86_64 -m 8024 -hda ${qemudir}/${disk} -cdrom ${qemudir}/${seed} -nographic -net nic -net user,smb=${qemudir}
+
+# Let's give the build 1 hour before we timeout
+expect -timeout 3600 $rootConsole
+send "shutdown -h now\r"
+
+sleep 5

@@ -42,7 +42,7 @@ expect $console
 send "sudo -s\r"
 
 # Let's give the build 1 hour before we timeout
-expect -timeout 6000 $rootConsole
+expect $rootConsole
 send "shutdown -h now\r"
 
 sleep 5

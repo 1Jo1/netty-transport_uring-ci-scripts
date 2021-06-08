@@ -18,6 +18,8 @@ wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/net
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/user-data
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/meta-data
 
+wget https://download.fedoraproject.org/pub/fedora/linux/releases/34/Cloud/x86_64/images/Fedora-Cloud-Base-34-1.2.x86_64.qcow2
+
 qemu-img create -f qcow2 -b Fedora-Cloud-Base-34-1.2.x86_64.qcow2 my-disk.qcow2 20G
 genisoimage -output my-seed.iso -volid cidata -joliet -rock user-data meta-data
 

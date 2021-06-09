@@ -25,7 +25,7 @@ set disk [lindex $argv 1];
 set seed [lindex $argv 2];
 
 # Start up our VM
-spawn qemu-system-x86_64 -m 4024 -hda ${qemudir}/${disk} -cdrom ${qemudir}/${seed} -nographic -net nic -net user,smb=${qemudir}
+spawn qemu-system-x86_64 -m 4024 --enable-kvm -hda ${qemudir}/${disk} -cdrom ${qemudir}/${seed} -nographic -net nic -net user,smb=${qemudir}
 
 # Set some timeout handling
 expect_before timeout { exit 1 }

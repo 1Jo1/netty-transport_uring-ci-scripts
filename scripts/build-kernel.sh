@@ -13,6 +13,7 @@
 #mkdir kernel-build && cp arch/x86/boot/bzImage kernel-build/$1-kernel-qemu-release
 #mv /boot/initrd.img-"${version}" kernel-build/$1-initrd.img
 
+#git clone https://github.com/netty/netty-incubator-transport-io_uring.git
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/qemu.exp
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/user-data
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/meta-data
@@ -22,4 +23,4 @@ wget https://download.fedoraproject.org/pub/fedora/linux/releases/34/Cloud/x86_6
 qemu-img create -f qcow2 -b Fedora-Cloud-Base-34-1.2.x86_64.qcow2 my-disk.qcow2 20G
 genisoimage -output my-seed.iso -volid cidata -joliet -rock user-data meta-data
 
-expect -f qemu.exp `pwd` my-disk.qcow2 my-seed.iso `pwd`/netty-incubator-transport-io_uring
+expect -f qemu.exp `pwd` my-disk.qcow2 my-seed.iso /var

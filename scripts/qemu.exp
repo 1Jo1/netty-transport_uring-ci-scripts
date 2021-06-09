@@ -51,7 +51,7 @@ expect $rootConsole
 send "jabba use adopt@1.8.0-292\r"
 
 expect $rootConsole
-send "cd netty-incubator-transport-io_uring\r"
+send "git clone https://github.com/netty/netty-incubator-transport-io_uring.git && cd netty-incubator-transport-io_uring\r"
 
 expect $rootConsole
 send "./mvnw clean package -Dio.netty.testsuite.badHost=netty.io\r"

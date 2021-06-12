@@ -25,7 +25,7 @@ set disk [lindex $argv 1];
 set seed [lindex $argv 2];
 
 # Start up our VM
-spawn qemu-system-x86_64 -m 600 --enable-kvm -hda ${qemudir}/${disk} -cdrom ${qemudir}/${seed} -nographic -net nic -net user,smb=${qemudir}
+spawn qemu-system-x86_64 -m 4000 --enable-kvm -hda ${qemudir}/${disk} -cdrom ${qemudir}/${seed} -nographic -net nic -net user,smb=${qemudir}
 
 # Wait till the VM is completely up. The string here (and the user / password) is configured in user-data.
 # We give it 30 minutes as this can be slow (as we also need to install packages etc).

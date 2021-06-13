@@ -23,4 +23,4 @@ wget https://download.fedoraproject.org/pub/fedora/linux/releases/34/Cloud/x86_6
 qemu-img create -f qcow2 -b Fedora-Cloud-Base-34-1.2.x86_64.qcow2 my-disk.qcow2 20G
 genisoimage -output my-seed.iso -volid cidata -joliet -rock user-data meta-data
 
-expect -f qemu.exp `pwd` my-disk.qcow2 my-seed.iso /var kernel-build/initrd.img-"${version}" arch/x86/boot/bzImage
+expect -f qemu.exp `pwd` my-disk.qcow2 my-seed.iso kernel-build/initrd.img-"${version}" arch/x86/boot/bzImage

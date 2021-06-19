@@ -59,7 +59,7 @@ expect $rootConsole
 send "make olddefconfig\r"
 
 expect $rootConsole
-send "make -j${nproc}\r"
+send "make -j ${nproc}\r"
 
 expect $rootConsole
 send "INSTALL_MOD_STRIP=1 make modules_install\r"

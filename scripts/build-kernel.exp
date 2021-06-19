@@ -50,18 +50,6 @@ expect $rootConsole
 send "cd /mnt/\r"
 
 expect $rootConsole
-send "wget https://gist.githubusercontent.com/1Jo1/cb1d0dc3ef5b824f5f7db3736d89c688/raw/746794634a628facd34c327fa6a4bf90d9a76ce6/ubuntu-config\r"
-
-expect $rootConsole
-send "mv ubuntu-config .config\r"
-
-expect $rootConsole
-send "make olddefconfig\r"
-
-expect $rootConsole
-send "make -j ${nproc}\r"
-
-expect $rootConsole
 send "INSTALL_MOD_STRIP=1 make modules_install\r"
 
 # Let's give the build 1 hour before we timeout

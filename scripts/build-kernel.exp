@@ -23,7 +23,7 @@ set rootConsole {root@io-uring-00}
 set qemudir [lindex $argv 0];
 set disk [lindex $argv 1];
 set seed [lindex $argv 2];
-set nproc [index $argv 3];
+set nproc [lindex $argv 3];
 
 # Start up our VM
 spawn qemu-system-x86_64 -m 4000 \

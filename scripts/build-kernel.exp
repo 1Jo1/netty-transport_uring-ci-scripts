@@ -28,6 +28,7 @@ set seed [lindex $argv 2];
 spawn qemu-system-x86_64 -m 4000 \
  --enable-kvm \
  -hda ${qemudir}/${disk} \
+ -cpu host \
  -cdrom ${qemudir}/${seed} \
  -nographic -net nic \
  -net user,smb=${qemudir}/ubuntu-kernel-image \
@@ -57,7 +58,7 @@ expect $rootConsole
 send "mv ubuntu-config .config && make olddefconfig\r"
 
 expect $rootConsole
-send "make -j 24\r"
+send "make -j${nproc}\r"
 
 expect $rootConsole
 send "INSTALL_MOD_STRIP=1 make modules_install\r"

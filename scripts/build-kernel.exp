@@ -49,8 +49,8 @@ send "sudo -s\r"
 expect $rootConsole
 send "cd /mnt/\r"
 
-expect $rootConsole
-send "tar xf https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.12.tar.xz && cd linux-5.12.12\r"
+send $rootConsole
+send "ls -la\r"
 
 expect $rootConsole
 send "wget https://gist.githubusercontent.com/1Jo1/cb1d0dc3ef5b824f5f7db3736d89c688/raw/746794634a628facd34c327fa6a4bf90d9a76ce6/ubuntu-config\r"

@@ -27,10 +27,10 @@ set seed [lindex $argv 2];
 # Start up our VM
 spawn qemu-system-x86_64 -m 4000 \
  --enable-kvm \
- -hda ${disk} \
- -cdrom ${seed} \
+ -hda ${qemudir}/${disk} \
+ -cdrom ${qemudir}/${seed} \
  -nographic -net nic \
- -net user,smb=${qemudir} \
+ -net user,smb=${qemudir}/ubuntu-kernel-image \
  -smp 24
 
 # Wait till the VM is completely up. The string here (and the user / password) is configured in user-data.

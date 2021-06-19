@@ -32,7 +32,7 @@ spawn qemu-system-x86_64 -m 4000 \
  -cpu host \
  -cdrom ${qemudir}/${seed} \
  -nographic -net nic \
- -net user,smb=${qemudir}/ubuntu-kernel-image \
+ -net user,smb=${qemudir} \
  -smp ${nproc}
 
 # Wait till the VM is completely up. The string here (and the user / password) is configured in user-data.

@@ -1,0 +1,39 @@
+#cloud-config
+# Set the default user
+system_info:
+  default_user:
+    name: netty
+
+# Unlock the default user
+chpasswd:
+  list: |
+     netty:netty
+  expire: False
+
+# Other settings
+resize_rootfs: True
+ssh_pwauth: True
+timezone: Europe/Berlin
+
+packages:
+ - build-essential
+ - libncurses-dev
+ - bison
+ - flex
+ - libssl-dev
+ - libelf-dev
+ - wget
+ - python3
+ - bc
+ - dwarves
+ - cpio
+ - zstd
+ - kmod
+ - initramfs-tools
+ - liblz4-tool
+
+runcmd:
+ - [ mount, -o, sec=none, -t, cifs, //10.0.2.4/qemu/, /mnt ]
+
+# For expect to know when to log in and begin tests
+final_message: "SYSTEM READY TO LOG IN"

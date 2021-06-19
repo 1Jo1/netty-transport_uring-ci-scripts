@@ -1,0 +1,71 @@
+#!/usr/bin/expect -f
+# ----------------------------------------------------------------------------
+# Copyright 2021 The Netty Project
+#
+# The Netty Project licenses this file to you under the Apache License,
+# version 2.0 (the "License"); you may not use this file except in compliance
+# with the License. You may obtain a copy of the License at:
+#
+#   https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# Let's use a default timeout of 30 seconds
+set timeout 1000000
+set console {netty@io-uring-00}
+set rootConsole {root@io-uring-00}
+
+set qemudir [lindex $argv 0];
+set disk [lindex $argv 1];
+set seed [lindex $argv 2];
+set initramfs [lindex $argv 3];
+set kernel [lindex $argv 4];
+
+# Start up our VM
+spawn qemu-system-x86_64 -m 4000 \
+ --enable-kvm \
+ -hda ${qemudir}/${disk} \
+ -cdrom ${qemudir}/${seed} \
+ -nographic -net nic \
+ -net user,smb=${qemudir} \
+ -smp 24
+
+# Wait till the VM is completely up. The string here (and the user / password) is configured in user-data.
+# We give it 30 minutes as this can be slow (as we also need to install packages etc).
+expect -timeout 3000 "SYSTEM READY TO LOG IN"
+send "netty\r"
+
+expect "Password: "
+send "netty\r"
+
+expect $console
+send "sudo -s\r"
+
+expect $rootConsole
+send "cd /mnt/\r"
+
+expect $rootConsole
+send "tar xf https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.12.tar.xz && cd linux-5.12.12\r"
+
+expect $rootConsole
+send "wget https://gist.githubusercontent.com/1Jo1/cb1d0dc3ef5b824f5f7db3736d89c688/raw/746794634a628facd34c327fa6a4bf90d9a76ce6/ubuntu-config\r"
+
+expect $rootConsole
+send "mv ubuntu-config .config && make olddefconfig\r"
+
+expect $rootConsole
+send "make -j$(nproc)\r"
+
+expect $rootConsole
+send "INSTALL_MOD_STRIP=1 make modules_install\r"
+
+# Let's give the build 1 hour before we timeout
+expect -timeout 3600 $rootConsole
+send "shutdown -h now\r"
+
+sleep 5

@@ -23,6 +23,7 @@ set rootConsole {root@io-uring-00}
 set qemudir [lindex $argv 0];
 set disk [lindex $argv 1];
 set seed [lindex $argv 2];
+set nproc [index $argv 3];
 
 # Start up our VM
 spawn qemu-system-x86_64 -m 4000 \
@@ -32,7 +33,7 @@ spawn qemu-system-x86_64 -m 4000 \
  -cdrom ${qemudir}/${seed} \
  -nographic -net nic \
  -net user,smb=${qemudir}/ubuntu-kernel-image \
- -smp 24
+ -smp ${nproc}
 
 # Wait till the VM is completely up. The string here (and the user / password) is configured in user-data.
 # We give it 30 minutes as this can be slow (as we also need to install packages etc).

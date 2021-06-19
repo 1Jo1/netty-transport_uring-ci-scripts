@@ -50,7 +50,7 @@ expect $rootConsole
 send "cd /mnt/\r"
 
 send $rootConsole
-send "ls -la\r"
+send "ls -l\r"
 
 expect $rootConsole
 send "wget https://gist.githubusercontent.com/1Jo1/cb1d0dc3ef5b824f5f7db3736d89c688/raw/746794634a628facd34c327fa6a4bf90d9a76ce6/ubuntu-config\r"

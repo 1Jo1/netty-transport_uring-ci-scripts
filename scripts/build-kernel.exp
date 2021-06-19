@@ -23,14 +23,12 @@ set rootConsole {root@io-uring-00}
 set qemudir [lindex $argv 0];
 set disk [lindex $argv 1];
 set seed [lindex $argv 2];
-set initramfs [lindex $argv 3];
-set kernel [lindex $argv 4];
 
 # Start up our VM
 spawn qemu-system-x86_64 -m 4000 \
  --enable-kvm \
- -hda ${qemudir}/${disk} \
- -cdrom ${qemudir}/${seed} \
+ -hda ${disk} \
+ -cdrom ${seed} \
  -nographic -net nic \
  -net user,smb=${qemudir} \
  -smp 24

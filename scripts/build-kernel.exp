@@ -29,6 +29,7 @@ set nproc [lindex $argv 3];
 spawn qemu-system-x86_64 -m 4000 \
  --enable-kvm \
  -hda ${qemudir}/${disk} \
+ -cpu host \
  -cdrom ${qemudir}/${seed} \
  -nographic -net nic \
  -net user,smb=${qemudir}/ubuntu-kernel-image \

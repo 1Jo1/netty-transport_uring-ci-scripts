@@ -19,5 +19,6 @@ make -j 24
 
 mkdir kernel-image
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel.exp && chmod +x build-kernel.exp
+echo $version
 expect -f build-kernel.exp `pwd` ubuntu.qcow2 ubuntu-seed.iso 24 $version
 ls -la kernel-image

@@ -25,9 +25,6 @@ packages:
  - tar
  - gcc
  - expect
- - glibc-devel
- - libgcc.i686 
- - glibc-devel.i686
 
 runcmd:
  - [ mount, -o, sec=none, -t, cifs, //10.0.2.4/qemu/, /mnt ]

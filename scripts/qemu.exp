@@ -34,8 +34,8 @@ spawn qemu-system-x86_64 -m 4000 \
  -nographic -net nic \
  -append "root=/dev/sda1 console=ttyS0" \
  -net user,smb=${qemudir} \
- -initrd $initramfs \
- -kernel $kernel
+ -initrd ${qemudir}/$initramfs \
+ -kernel ${qemudir}/$kernel
 
 # Wait till the VM is completely up. The string here (and the user / password) is configured in user-data.
 # We give it 30 minutes as this can be slow (as we also need to install packages etc).

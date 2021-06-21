@@ -31,7 +31,7 @@ packages:
  - kmod
  - initramfs-tools
  - liblz4-tool
-  - git
+ - git
  - autoconf
  - automake
  - libtool

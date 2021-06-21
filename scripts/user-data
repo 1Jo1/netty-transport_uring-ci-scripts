@@ -23,6 +23,7 @@ packages:
  - cifs-utils
  - make
  - tar
+ - gcc
  - expect
  - glibc-devel
  - libgcc.i686 

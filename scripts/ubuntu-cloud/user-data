@@ -31,19 +31,6 @@ packages:
  - kmod
  - initramfs-tools
  - liblz4-tool
- - git
- - autoconf
- - automake
- - libtool
- - cifs-utils
- - make
- - tar
- - expect
- - glibc-devel
- - libgcc.i686 
- - glibc-devel.i686
- - gcc
-
 
 runcmd:
  - [ mount, -o, sec=none, -t, cifs, //10.0.2.4/qemu/, /mnt ]

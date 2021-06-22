@@ -52,6 +52,9 @@ expect $rootConsole
 send "cd /mnt/\r"
 
 expect $rootConsole
+send "ls -lah\r"
+
+expect $rootConsole
 send "curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh\r"
 
 expect $rootConsole
@@ -62,6 +65,9 @@ send "jabba use adopt@1.8.0-292\r"
 
 expect $rootConsole
 send "git clone https://github.com/1Jo1/netty-incubator-transport-io_uring.git && cd netty-incubator-transport-io_uring\r"
+
+expect $rootConsole
+send "pwd\r"
 
 expect $rootConsole
 send "git checkout fork-linux\r"

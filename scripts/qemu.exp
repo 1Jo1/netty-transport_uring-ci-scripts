@@ -31,7 +31,7 @@ spawn qemu-system-x86_64 -m 4000 \
  --enable-kvm \
  -hda ${qemudir}/${disk} \
  -cdrom ${qemudir}/${seed} \
- -nographic -net nic \
+ -net user,smb=${qemudir} \
  -append "root=/dev/sda1 console=ttyS0" \
  -net user,smb=${qemudir} \
  -initrd ${qemudir}/$initramfs \

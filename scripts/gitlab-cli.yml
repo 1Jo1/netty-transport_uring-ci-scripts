@@ -18,7 +18,7 @@ qemu-netty-test:
     - pwd
     - ls -lah netty-incubator-transport-io_uring
     - ls -la netty-incubator-transport-io_uring/target
-    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/check_build_result.sh | bash -s build.output 
+    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/check_build_result.sh | bash -s netty-incubator-transport-io_uring/build.output 
     #- curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel.sh | bash -s $CI_COMMIT_TAG
   artifacts:
     when: always

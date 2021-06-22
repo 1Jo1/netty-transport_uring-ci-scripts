@@ -11,7 +11,7 @@ wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/net
 qemu-img create -f qcow2 -b ubuntu-21.04-server-cloudimg-amd64.img ubuntu.qcow2 70G
 genisoimage -output ubuntu-seed.iso -volid cidata -joliet -rock user-data meta-data
 
-wget https://gist.githubusercontent.com/1Jo1/cb1d0dc3ef5b824f5f7db3736d89c688/raw/746794634a628facd34c327fa6a4bf90d9a76ce6/ubuntu-config
+wget https://gist.githubusercontent.com/1Jo1/cb1d0dc3ef5b824f5f7db3736d89c688/raw/d88759776bc99787a35784d2cf64f2b7de306425/ubuntu-config
 mv ubuntu-config .config
 
 mkdir kernel-image

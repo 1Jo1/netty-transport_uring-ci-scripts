@@ -17,10 +17,12 @@ qemu-netty-test:
     - ls -lah
     - pwd
     - ls -lah netty-incubator-transport-io_uring
+    - ls -la netty-incubator-transport-io_uring/target
     - cp netty-incubator-transport-io_uring/target/surefire-reports/TEST-*.xml .
-    - cp netty-incubator-transport-io_uring/target//failsafe-reports/TEST-*.xml .
+    - cp netty-incubator-transport-io_uring/target/failsafe-reports/TEST-*.xml .
     #- curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel.sh | bash -s $CI_COMMIT_TAG
   artifacts:
     reports:
       junit:
         - TEST-*.xml
+

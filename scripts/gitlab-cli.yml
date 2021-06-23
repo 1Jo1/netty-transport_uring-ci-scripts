@@ -36,6 +36,7 @@ badge:
   stage: build-badge
   when: always
   script:
+    - echo $CI_JOB_ID
     - cat .job_status
     - pip install anybadge
     - anybadge -l pipeline -v "$CI_COMMIT_TAG" -f badge.svg --color=#FF0000

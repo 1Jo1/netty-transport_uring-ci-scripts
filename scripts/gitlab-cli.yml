@@ -33,6 +33,7 @@ qemu-netty-test:
 
 badge:
   stage: build-badge
+  when: always
   script:
     - cat .job_status
     - pip install anybadge

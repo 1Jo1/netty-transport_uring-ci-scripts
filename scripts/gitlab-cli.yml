@@ -42,7 +42,7 @@ badge-success:
        - badge.svg
 
 badge-failed:
-  statge: build-badge-failed
+  stage: build-badge-failed
   when: on_failure
   script:
     - pip install anybadge

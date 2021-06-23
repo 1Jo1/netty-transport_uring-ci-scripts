@@ -26,6 +26,7 @@ qemu-netty-test:
   artifacts:
     when: always
     paths:
+      - .job_status
       - netty-incubator-transport-io_uring/target/surefire-reports/TEST-*.xml
     reports:
       junit:

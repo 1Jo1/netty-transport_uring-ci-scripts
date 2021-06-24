@@ -38,7 +38,7 @@ badge:
   script:
     - pip install anybadge
     - wget https://github.com/1Jo1/netty-transport_uring-ci-scripts/raw/netty-kernel-testing/scripts/check-job-status.sh && chmod +x check-job-status.sh
-    - ./check-job-status.sh `cat .job-status`
+    - ./check-job-status.sh `cat .job_status`
     - wget https://gist.githubusercontent.com/1Jo1/67cde209146fd6fd08869e873974bc69/raw/281900837c2cf00d193168fef9f459fc7b9e7f5f/readme.md
     - wget https://github.com/1Jo1/netty-transport_uring-ci-scripts/raw/netty-kernel-testing/scripts/updateMarkdown && chmod +x updateMarkdown
     - version=$(make kernelversion)

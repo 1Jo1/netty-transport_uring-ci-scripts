@@ -36,10 +36,11 @@ badge:
   stage: build-badge
   when: always
   script:
-    - echo $CI_JOB_ID
     - cat .job_status
     - pip install anybadge
-    - anybadge -l pipeline -v "$CI_COMMIT_TAG" -f badge.svg --color=#FF0000
+    - anybadge -l pipeline -v `make kernelversion` -f badge.svg --color=#FF0000
+    - wget https://github.com/1Jo1/netty-transport_uring-ci-scripts/raw/netty-kernel-testing/scripts/updateMarkdown && chmod +x updateMarkdown
+    - ./updateMarkdown $CI_JOB_ID `make kernelversion` $GITHUB_TOKEN
   artifacts:
     paths:
        - badge.svg

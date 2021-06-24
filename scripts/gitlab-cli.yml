@@ -45,7 +45,8 @@ badge:
     - echo $version
     - echo $CI_JOB_ID
     - echo $GITHUB_TOKEN
-    - ./updateMarkdown $CI_JOB_ID $version $GITHUB_TOKEN
+    - echo $CI_PIPELINE_ID
+    - ./updateMarkdown $CI_JOB_ID $CI_PIPELINE_ID $version $GITHUB_TOKEN
   artifacts:
     paths:
        - badge.svg

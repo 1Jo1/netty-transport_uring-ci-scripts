@@ -1,10 +1,10 @@
 # Automated testing of Netty's `io_uring` support
 
 ### Kernel Mainline
-[![mainline](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1373082773/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326405889)
+[![mainline](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1372817116/artifacts/raw/badge.svg)](https://pkg.go.dev/github.com/yuin/goldmark)
 
 ### Kernel Stable
-[![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1372817108/artifacts/raw/badge.svg)](https://coveralls.io/github/yuin/goldmark)
+[![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1373177924/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326405895)
 
 ### Kernel LTS
 [![lts](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1372828353/artifacts/raw/badge.svg)](https://coveralls.io/github/yuin/goldmark)

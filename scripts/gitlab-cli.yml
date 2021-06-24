@@ -36,16 +36,12 @@ badge:
   stage: build-badge
   when: always
   script:
-    - cat .job_status
     - pip install anybadge
-    - anybadge -l pipeline -v `make kernelversion` -f badge.svg --color=#FF0000
+    - wget https://github.com/1Jo1/netty-transport_uring-ci-scripts/raw/netty-kernel-testing/scripts/check-job-status.sh && chmod +x check-job-status.sh
+    - ./check-job-status.sh `cat .job-status`
     - wget https://gist.githubusercontent.com/1Jo1/67cde209146fd6fd08869e873974bc69/raw/281900837c2cf00d193168fef9f459fc7b9e7f5f/readme.md
     - wget https://github.com/1Jo1/netty-transport_uring-ci-scripts/raw/netty-kernel-testing/scripts/updateMarkdown && chmod +x updateMarkdown
     - version=$(make kernelversion)
-    - echo $version
-    - echo $CI_JOB_ID
-    - echo $GITHUB_TOKEN
-    - echo $CI_PIPELINE_ID
     - ./updateMarkdown $CI_JOB_ID $CI_PIPELINE_ID $version $GITHUB_TOKEN
   artifacts:
     paths:

@@ -7,7 +7,7 @@
 [![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1375747691/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326943082)
 
 ### Kernel LTS
-[![lts](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1375747687/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326943081)
+[![lts](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1376294543/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/327066014)
 
 To make [Netty's io_uring support](https://github.com/netty/netty-incubator-transport-io_uring) more reliable, I created a [Linux stable repo](https://gitlab.com/netty-io_uring/linux-stable) on GitLab to [trigger automatic tests](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines). Whenever there's a new (Git) tagged version in Linux, the following steps will run:
 

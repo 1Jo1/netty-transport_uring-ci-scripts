@@ -4,7 +4,7 @@
 [![mainline](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1381230198/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/328068908)
 
 ### Kernel Stable
-[![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1375747691/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326943082)
+[![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1381435651/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/328111736)
 
 ### Kernel LTS
 [![lts](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1376294543/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/327066014)

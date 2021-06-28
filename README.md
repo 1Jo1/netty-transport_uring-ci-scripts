@@ -1,13 +1,13 @@
 # Automated testing of Netty's `io_uring` support
 
 ### Kernel Mainline
-[![mainline](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1374531108/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326672095)
+[![mainline](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1381230198/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/328068908)
 
 ### Kernel Stable
-[![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1375271202/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326845507)
+[![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1381435651/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/328111736)
 
 ### Kernel LTS
-[![lts](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326845505)](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1375271197/artifacts/raw/badge.svg)
+[![lts](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1376294543/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/327066014)
 
 To make [Netty's io_uring support](https://github.com/netty/netty-incubator-transport-io_uring) more reliable, I created a [Linux stable repo](https://gitlab.com/netty-io_uring/linux-stable) on GitLab to [trigger automatic tests](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines). Whenever there's a new (Git) tagged version in Linux, the following steps will run:
 

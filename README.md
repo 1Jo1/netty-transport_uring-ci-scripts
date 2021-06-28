@@ -1,7 +1,7 @@
 # Automated testing of Netty's `io_uring` support
 
 ### Kernel Mainline
-[![mainline](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1375271217/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326845512)
+[![mainline](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1381230198/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/328068908)
 
 ### Kernel Stable
 [![stable](https://gitlab.com/netty-io_uring/linux-stable/-/jobs/1375747691/artifacts/raw/badge.svg)](https://gitlab.com/netty-io_uring/linux-stable/-/pipelines/326943082)

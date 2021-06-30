@@ -5,6 +5,5 @@ mv ubuntu-config .config
 
 mkdir kernel-image
 make olddefconfig
-make -j 24
-
+make -j24
 cp arch/x86/boot/bzImage kernel-image/

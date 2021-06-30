@@ -8,19 +8,29 @@ workflow:
     - if: $CI_COMMIT_TAG =~ /v([1-9]\[0-9]+\.?[0-9]*|0?5\.(9|[1-9]+[0-9]+)|[0-9]*[6-9])\.?([0-9]+\.?)?/
 
 stages:
-    - test
+    - build-kernel
+    - testing
     - build-badge
 
-qemu-netty-test:
-  stage: test
+build-qemu-image:
+  stage: build-kernel
   script:
-    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel-qemu.sh | bash -s $CI_COMMIT_TAG
-    - ls -lah
-    - pwd
-    - ls -lah netty-incubator-transport-io_uring
-    - ls -la netty-incubator-transport-io_uring/target
-    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/check_build_result.sh | bash -s netty-incubator-transport-io_uring/build.output
-    #- curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel.sh | bash -s $CI_COMMIT_TAG
+    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/create-qemu-image.sh | bash -s
+
+build-kernel-image:
+  stage: build-kernel
+  script:
+    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-kernel.sh | bash -s
+  
+build-initramfs:
+  stage: build-kernel
+  script:
+    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-initramfs.sh | bash -s
+
+netty-tests:
+  stage: testing
+  script:
+    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/test-netty-qemu.sh | bash -s
   after_script:
     - echo $CI_JOB_STATUS > .job_status
   artifacts:

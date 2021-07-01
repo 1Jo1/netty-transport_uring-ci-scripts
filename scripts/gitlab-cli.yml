@@ -50,7 +50,11 @@ build-initramfs:
 netty-tests:
   stage: testing
   script:
-    - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/test-netty-qemu.sh | bash -s
+    - version=$(make kernelversion)
+    - git clone https://github.com/1Jo1/netty-incubator-transport-io_uring.git
+    - ls -lha
+    - wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/qemu.exp
+    - expect -f qemu.exp `pwd` ubuntu.qcow2 ubuntu-seed.iso kernel-image/initrd.img-"${version}" kernel-image/bzImage
   after_script:
     - echo $CI_JOB_STATUS > .job_status
   artifacts:

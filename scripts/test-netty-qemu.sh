@@ -1,11 +1,8 @@
 #!/bin/bash
 
-#rm -rf user-data meta-data ubuntu.qcow2 ubuntu-seed.iso
-#qemu-img create -f qcow2 -b ubuntu-21.04-server-cloudimg-amd64.img ubuntu.qcow2 70G
-#genisoimage -output ubuntu-seed.iso -volid cidata -joliet -rock user-data meta-data
-
-#git clone https://github.com/1Jo1/netty-incubator-transport-io_uring.git
+version=$(make kernelversion)
+git clone https://github.com/1Jo1/netty-incubator-transport-io_uring.git
 
 ls -lha
 
-#expect -f qemu.exp `pwd` ubuntu.qcow2 ubuntu-seed.iso kernel-image/initrd.img-"${version}" kernel-image/bzImage
+expect -f qemu.exp `pwd` ubuntu.qcow2 ubuntu-seed.iso kernel-image/initrd.img-"${version}" kernel-image/bzImage

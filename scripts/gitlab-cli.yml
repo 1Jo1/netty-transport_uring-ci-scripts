@@ -28,11 +28,19 @@ build-kernel-image:
     - make olddefconfig
     - make -j24
     - cp arch/x86/boot/bzImage kernel-image/
+  artifacts:
+    when: always
+    paths:
+      - kernel-image/
   
 build-initramfs:
   stage: build-initramfs
   script:
     - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/build-initramfs.sh | bash -s
+  artifacts:
+    when: always
+    paths:
+      - kernel-image/
 
 netty-tests:
   stage: testing

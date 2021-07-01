@@ -5,6 +5,8 @@ wget https://cloud-images.ubuntu.com/releases/hirsute/release/ubuntu-21.04-serve
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/ubuntu-cloud/user-data
 wget https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/ubuntu-cloud/meta-data
 
+# curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/create-qemu-image.sh | bash -s
+
 version=$(make kernelversion)
 ls -lah
 pwd

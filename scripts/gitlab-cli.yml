@@ -18,7 +18,7 @@ build-qemu-image:
   stage: qemu-img
   script:
     - curl -s https://raw.githubusercontent.com/1Jo1/netty-transport_uring-ci-scripts/netty-kernel-testing/scripts/create-qemu-image.sh | bash -s
-  artifact:
+  artifacts:
     when: always
     paths:
       - ubuntu.qcow2
